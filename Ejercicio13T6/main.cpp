@@ -51,5 +51,9 @@ int main(int argc, const char * argv[]) {
         itt.avanza();
     }
     
+    std::cout << "Eliminando a" << std::endl;
+    
+    a.~ListaConcatena();
+    
     return 0;
 }
