@@ -222,16 +222,13 @@ public:
     /**
      Concatena los elementos de una lista a la actual.
      */
-    ListaConcatena &concatena(const ListaConcatena &lista) {
+    ListaConcatena &concatena(ListaConcatena &lista) {
         
-        if ( lista != NULL ) {
-            
-            while ( !lista.esVacia()) {
-                T elem = lista.primero();
-                
-                insertaElem(elem, _ult, NULL);
-            }
-        }
+        _ult->_sig = lista._prim;
+        lista._prim->_ant = _ult;
+        
+        lista._prim = NULL;
+        lista._ult = NULL;
         
         return *this;
     }
@@ -268,7 +265,7 @@ public:
 	protected:
 		// Para que pueda construir objetos del
 		// tipo iterador
-		friend class Lista;
+		friend class ListaConcatena;
         
 		Iterador() : _act(NULL) {}
 		Iterador(Nodo *act) : _act(act) {}
